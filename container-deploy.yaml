@@ -12,7 +12,7 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-name: webby
+  name: webby
   namespace: pedemo-dyzk-user1
 spec:
   replicas: 3
@@ -27,12 +27,11 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: webby
-        image: registry.gitlab.com/ignw1/dvs-code/pedemo/rhos-pe-
-immersion-day/webby:v1.1
+        image: registry.gitlab.com/ignw1/dvs-code/pedemo/rhos-pe-immersion-day/webby:v1.1
         imagePullPolicy: Always
         env:
           - name: NAMESPACE
-            value: "pedemo-dyzk-user1"
+            value: "pedemo-dyzk-user0"
         resources:
           requests:
             cpu: 100m
@@ -56,12 +55,12 @@ spec:
   ports:
     - port: 80
       targetPort: 9999
-
+      
 ---
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-name: webby
+  name: webby
   namespace: pedemo-dyzk-user1
 spec:
   tls:
@@ -77,7 +76,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-name: condb
+  name: condb
   namespace: pedemo-dyzk-user1
 spec:
   selector:
@@ -91,9 +90,9 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: condb
-        image: registry.gitlab.com/ignw1/dvs-code/pedemo/rhos-pe-
-immersion-day/condb:v1.1
+        image: registry.gitlab.com/ignw1/dvs-code/pedemo/rhos-pe-immersion-day/condb:v1.1
         imagePullPolicy: Always
+        
         resources:
           requests:
             cpu: 200m
